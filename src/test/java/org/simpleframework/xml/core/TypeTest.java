@@ -1,6 +1,7 @@
 package org.simpleframework.xml.core;
 
 import java.io.StringWriter;
+import java.util.Optional;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
@@ -125,12 +126,12 @@ public class TypeTest extends ValidationTestCase {
       assertEquals(entry.primitive.doubleValue, 1234567.89d);
 
       assertEquals(entry.object.booleanValue, Boolean.TRUE);
-      assertEquals(entry.object.byteValue, new Byte("16"));
-      assertEquals(entry.object.shortValue, new Short("120"));
-      assertEquals(entry.object.intValue, new Integer(1234));
-      assertEquals(entry.object.floatValue, new Float(1234.56));
-      assertEquals(entry.object.longValue, new Long(1234567));
-      assertEquals(entry.object.doubleValue, new Double(1234567.89));
+      assertEquals(entry.object.byteValue, Optional.of(Byte.parseByte("16")).get());
+      assertEquals(entry.object.shortValue, Optional.of(Short.parseShort("120")).get());
+      assertEquals(entry.object.intValue, Optional.of(1234).get());
+      assertEquals(entry.object.floatValue, 1234.56f);
+      assertEquals(entry.object.longValue, Optional.of(1234567L).get());
+      assertEquals(entry.object.doubleValue, 1234567.89);
       assertEquals(entry.object.stringValue, "text value");
       assertEquals(entry.object.enumValue, TestEnum.TWO);
      
@@ -145,16 +146,16 @@ public class TypeTest extends ValidationTestCase {
       assertEquals(entry.primitive.shortValue, 120);
       assertEquals(entry.primitive.intValue, 1234);
       assertEquals(entry.primitive.floatValue, 1234.56f);
-      assertEquals(entry.primitive.longValue, 1234567l);
+      assertEquals(entry.primitive.longValue, 1234567L);
       assertEquals(entry.primitive.doubleValue, 1234567.89d);
 
       assertEquals(entry.object.booleanValue, Boolean.TRUE);      
-      assertEquals(entry.object.byteValue, new Byte("16"));
-      assertEquals(entry.object.shortValue, new Short("120"));
-      assertEquals(entry.object.intValue, new Integer(1234));
-      assertEquals(entry.object.floatValue, new Float(1234.56));
-      assertEquals(entry.object.longValue, new Long(1234567));
-      assertEquals(entry.object.doubleValue, new Double(1234567.89));
+      assertEquals(entry.object.byteValue, Optional.of(Byte.parseByte("16")).get());
+      assertEquals(entry.object.shortValue, Optional.of(Short.parseShort("120")).get());
+      assertEquals(entry.object.intValue, Optional.of(1234).get());
+      assertEquals(entry.object.floatValue, 1234.56f);
+      assertEquals(entry.object.longValue, Optional.of(1234567L).get());
+      assertEquals(entry.object.doubleValue, 1234567.89);
       assertEquals(entry.object.stringValue, "text value");
       assertEquals(entry.object.enumValue, TestEnum.TWO);         
       

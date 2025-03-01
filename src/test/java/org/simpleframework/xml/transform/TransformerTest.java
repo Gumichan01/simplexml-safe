@@ -4,6 +4,8 @@ import org.simpleframework.xml.transform.Transformer;
 
 import junit.framework.TestCase;
 
+import java.util.Optional;
+
 public class TransformerTest extends TestCase {
    
    private static class BlankMatcher implements Matcher {
@@ -23,7 +25,7 @@ public class TransformerTest extends TestCase {
       Object value = transformer.read("1", Integer.class);
       String text = transformer.write(value, Integer.class);
 
-      assertEquals(value, new Integer(1));
+      assertEquals(value, 1);
       assertEquals(text, "1");
    }
    
@@ -39,7 +41,7 @@ public class TransformerTest extends TestCase {
       Object value = transformer.read("c", Character.class);      
       String text = transformer.write(value, Character.class);      
       
-      assertEquals(value, new Character('c'));
+      assertEquals(value, 'c');
       assertEquals(text, "c");
    }
    
@@ -59,7 +61,7 @@ public class TransformerTest extends TestCase {
       Object value = transformer.read("1.12", Float.class);      
       String text = transformer.write(value, Float.class);
       
-      assertEquals(value, new Float(1.12));
+      assertEquals(value, 1.12f);
       assertEquals(text, "1.12");
    }
    
@@ -67,7 +69,7 @@ public class TransformerTest extends TestCase {
       Object value = transformer.read("12.33", Double.class);
       String text = transformer.write(value, Double.class);      
       
-      assertEquals(value, new Double(12.33));
+      assertEquals(value, 12.33);
       assertEquals(text, "12.33");
    }
    
@@ -83,7 +85,7 @@ public class TransformerTest extends TestCase {
       Object value = transformer.read("1234567", Long.class);
       String text = transformer.write(value, Long.class);
       
-      assertEquals(value, new Long(1234567));
+      assertEquals(value, 1234567L);
       assertEquals(text, "1234567");
    }
    
@@ -91,7 +93,7 @@ public class TransformerTest extends TestCase {
       Object value = transformer.read("12", Short.class);
       String text = transformer.write(value, Short.class);
       
-      assertEquals(value, new Short((short)12));
+      assertEquals(value, (short) 12);
       assertEquals(text, "12");
    }
    
@@ -232,13 +234,13 @@ public class TransformerTest extends TestCase {
 
       Integer[] array = (Integer[])value;
 
-      assertEquals(array.length, 5);
-      assertEquals(array[0], new Integer(1));
-      assertEquals(array[1], new Integer(2));
-      assertEquals(array[2], new Integer(3));
-      assertEquals(array[3], new Integer(4));
-      assertEquals(array[4], new Integer(5));
-      assertEquals(text, "1, 2, 3, 4, 5");
+      assertEquals(5, array.length);
+      assertEquals(array[0], Optional.of(1).get());
+      assertEquals(array[1], Optional.of(2).get());
+      assertEquals(array[2], Optional.of(3).get());
+      assertEquals(array[3], Optional.of(4).get());
+      assertEquals(array[4], Optional.of(5).get());
+      assertEquals("1, 2, 3, 4, 5", text);
    }
    
    public void testBooleanArray() throws Exception {
@@ -267,11 +269,11 @@ public class TransformerTest extends TestCase {
       Long[] array = (Long[])value;
 
       assertEquals(array.length, 5);
-      assertEquals(array[0], new Long(1));
-      assertEquals(array[1], new Long(2));
-      assertEquals(array[2], new Long(3));
-      assertEquals(array[3], new Long(4));
-      assertEquals(array[4], new Long(5));
+      assertEquals(array[0], Optional.of(1L).get());
+      assertEquals(array[1], Optional.of(2L).get());
+      assertEquals(array[2], Optional.of(3L).get());
+      assertEquals(array[3], Optional.of(4L).get());
+      assertEquals(array[4], Optional.of(5L).get());
       assertEquals(text, "1, 2, 3, 4, 5");      
    }     
    
@@ -284,11 +286,11 @@ public class TransformerTest extends TestCase {
       Short[] array = (Short[])value;
 
       assertEquals(array.length, 5);
-      assertEquals(array[0], new Short((short)1));
-      assertEquals(array[1], new Short((short)2));
-      assertEquals(array[2], new Short((short)3));
-      assertEquals(array[3], new Short((short)4));
-      assertEquals(array[4], new Short((short)5));
+      assertEquals(array[0], Short.valueOf((short)1));
+      assertEquals(array[1], Short.valueOf((short)2));
+      assertEquals(array[2], Short.valueOf((short)3));
+      assertEquals(array[3], Short.valueOf((short)4));
+      assertEquals(array[4], Short.valueOf((short)5));
       assertEquals(text, "1, 2, 3, 4, 5");      
    }
    
@@ -301,11 +303,11 @@ public class TransformerTest extends TestCase {
       Byte[] array = (Byte[])value;
 
       assertEquals(array.length, 5);
-      assertEquals(array[0], new Byte((byte)1));
-      assertEquals(array[1], new Byte((byte)2));
-      assertEquals(array[2], new Byte((byte)3));
-      assertEquals(array[3], new Byte((byte)4));
-      assertEquals(array[4], new Byte((byte)5));
+      assertEquals(array[0], Byte.valueOf((byte)1));
+      assertEquals(array[1], Byte.valueOf((byte)2));
+      assertEquals(array[2], Byte.valueOf((byte)3));
+      assertEquals(array[3], Byte.valueOf((byte)4));
+      assertEquals(array[4], Byte.valueOf((byte)5));
       assertEquals(text, "1, 2, 3, 4, 5");      
    }
    
@@ -318,11 +320,11 @@ public class TransformerTest extends TestCase {
       Float[] array = (Float[])value;
 
       assertEquals(array.length, 5);
-      assertEquals(array[0], new Float(1.0f));
-      assertEquals(array[1], new Float(2.0f));
-      assertEquals(array[2], new Float(3.0f));
-      assertEquals(array[3], new Float(4.0f));
-      assertEquals(array[4], new Float(5.0f));
+      assertEquals(array[0], 1.0f);
+      assertEquals(array[1], 2.0f);
+      assertEquals(array[2], 3.0f);
+      assertEquals(array[3], 4.0f);
+      assertEquals(array[4], 5.0f);
       assertEquals(text, "1.0, 2.0, 3.0, 4.0, 5.0");      
    }
    
@@ -335,11 +337,11 @@ public class TransformerTest extends TestCase {
       Double[] array = (Double[])value;
 
       assertEquals(array.length, 5);
-      assertEquals(array[0], new Double(1.0d));
-      assertEquals(array[1], new Double(2.0d));
-      assertEquals(array[2], new Double(3.0d));
-      assertEquals(array[3], new Double(4.0d));
-      assertEquals(array[4], new Double(5.0d));
+      assertEquals(array[0], 1.0d);
+      assertEquals(array[1], 2.0d);
+      assertEquals(array[2], 3.0d);
+      assertEquals(array[3], 4.0d);
+      assertEquals(array[4], 5.0d);
       assertEquals(text, "1.0, 2.0, 3.0, 4.0, 5.0");      
    }
    
@@ -352,17 +354,17 @@ public class TransformerTest extends TestCase {
       Character[] array = (Character[])value;
 
       assertEquals(array.length, 11);
-      assertEquals(array[0], new Character('h'));
-      assertEquals(array[1], new Character('e'));
-      assertEquals(array[2], new Character('l'));
-      assertEquals(array[3], new Character('l'));
-      assertEquals(array[4], new Character('o'));      
-      assertEquals(array[5], new Character(' '));
-      assertEquals(array[6], new Character('w'));
-      assertEquals(array[7], new Character('o'));
-      assertEquals(array[8], new Character('r'));
-      assertEquals(array[9], new Character('l'));
-      assertEquals(array[10], new Character('d'));   
+      assertEquals(array[0], Optional.of('h').get());
+      assertEquals(array[1], Optional.of('e').get());
+      assertEquals(array[2], Optional.of('l').get());
+      assertEquals(array[3], Optional.of('l').get());
+      assertEquals(array[4], Optional.of('o').get());
+      assertEquals(array[5], Optional.of(' ').get());
+      assertEquals(array[6], Optional.of('w').get());
+      assertEquals(array[7], Optional.of('o').get());
+      assertEquals(array[8], Optional.of('r').get());
+      assertEquals(array[9], Optional.of('l').get());
+      assertEquals(array[10], Optional.of('d').get());
       
       assertEquals(text, "hello world");      
    }     

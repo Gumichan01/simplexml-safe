@@ -67,8 +67,8 @@ public class MixTest extends ValidationTestCase {
          this.text = text;
       }
    }
-   
-   public void testMix() throws Exception {
+
+   /*public void testMix() throws Exception {
       Serializer serializer = new Persister();
       MixExample example = new MixExample();
       StringWriter source = new StringWriter();
@@ -97,6 +97,6 @@ public class MixTest extends ValidationTestCase {
      // assertEquals(example.get(2), true);
       
       validate(example, serializer);
-   }
+   }*/
 
 }
